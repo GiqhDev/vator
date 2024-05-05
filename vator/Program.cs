@@ -11,7 +11,7 @@ namespace vator
 
     static void Main(string[] args)
     {
-      var numComp = numCompu();
+      var numComp = Maquina.numCompu();
 
       var saludo = DateTime.UtcNow;            
 
@@ -26,17 +26,32 @@ namespace vator
       else if (saludo > DateTime.Parse("17:00:00"))
       {
           Console.WriteLine("Buenos noches");
-      }
-
-      
+      }      
 
       Console.WriteLine("Hola Bienvenidos al juego Vator");
       Console.WriteLine("El juego conciste en adivinar el numero que piensa la PC");
       Console.WriteLine("El numero es de cuatro digitos, no se repite ninguno y no contiene Ceros");
       Console.WriteLine("Si adivinas un digito en la misma pocicion que el numero de la PC pues es Un TORO, si adivinas un numero pero no en la posicion que el del numero de la PC pues es una VACA.");
       Console.WriteLine("Comencemos");
-                        
-      numUser();
+
+
+      string? numUsuario = "";
+      do
+      {
+        Console.WriteLine("Digite un numero de 4 digitos");
+        numUsuario = Console.ReadLine();
+      }
+      while (numUsuario.Length > 4 || numUsuario.Length < 4);
+
+			for (int i = 0; i < numUsuario.Length; i++)
+			{
+				if (numUsuario[i].ToString() == "0")
+				{
+					Console.WriteLine("Digite un numero de 4 digitos sin cero (0)");
+					numUsuario = Console.ReadLine();
+				}				
+			}
+			list = Usuario.numUser(numUsuario);
 
       //Toros
       if (list[0] == numComp[0] && list[1] == numComp[1] && list[2] == numComp[2] && list[3] == numComp[3])
@@ -117,9 +132,12 @@ namespace vator
       }
 
       intentos++;
-      cantVacas(vaca,intentos);
+      
+      var cantVacas = Vaca.cantVacas(vaca.ToString(),toro.ToString(),intentos.ToString());
+      Console.WriteLine(cantVacas);
 
-      cantToros(toro, intentos);                
+      var cantToros = Toro.cantToros(toro.ToString(), intentos.ToString());    
+      Console.WriteLine(cantToros);
             
       while (toro<4)
       {
@@ -131,9 +149,24 @@ namespace vator
         toro = 0;
         vaca = 0;
         list.Clear();
-        numUser();
-        //Toros
-        if (list[0] == numComp[0] && list[1] == numComp[1] && list[2] == numComp[2] && list[3] == numComp[3])
+				do
+				{
+					Console.WriteLine("Digite un numero de 4 digitos");
+					numUsuario = Console.ReadLine();
+				}
+				while (numUsuario.Length > 4 || numUsuario.Length < 4);
+
+				for (int i = 0; i < numUsuario.Length; i++)
+				{
+					if (numUsuario[i].ToString() == "0")
+					{
+						Console.WriteLine("Digite un numero de 4 digitos sin cero (0)");
+						numUsuario = Console.ReadLine();
+					}
+				}
+				list = Usuario.numUser(numUsuario);
+				//Toros
+				if (list[0] == numComp[0] && list[1] == numComp[1] && list[2] == numComp[2] && list[3] == numComp[3])
         {
           toro = toro + 4;
           intentos++;
@@ -213,13 +246,12 @@ namespace vator
 
         intentos++;
 
-        cantVacas(vaca, intentos);
+				 cantVacas = Vaca.cantVacas(vaca.ToString(), toro.ToString(), intentos.ToString());
+				Console.WriteLine(cantVacas);
 
-        cantToros(toro,intentos);
-
-                
-      }
-
+				cantToros = Toro.cantToros(toro.ToString(), intentos.ToString());
+				Console.WriteLine(cantToros);
+			}
     }
 
     public static void cantToros(int toro, int intentos)
