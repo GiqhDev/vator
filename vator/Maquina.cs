@@ -8,9 +8,10 @@ namespace vator
 {
 	internal class Maquina
 	{
-		public static int[] numCompu()
+		public static List<int>NumCompu()
 		{
-			Random rd = new Random();
+			Random rd = new();
+
 			int num1 = rd.Next(1, 9);
 			int num2 = rd.Next(1, 9);
 			int num3 = rd.Next(1, 9);
@@ -32,7 +33,7 @@ namespace vator
 			{
 				num4 = rd.Next(1, 9);
 			}
-			int[] arrNumCompu = { num1, num2, num3, num4 };
+			List<int> arrNumCompu = new() { num1, num2, num3, num4 };
 
 			return arrNumCompu;
 		}

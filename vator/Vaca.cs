@@ -1,36 +1,48 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace vator
+﻿namespace vator
 {
 	internal class Vaca
 	{
-		public static string cantVacas(string vaca,string toro, string intentos)
+		public static int vaca = 0;
+		public static string CantVacas(int vaca,int toro, int intentos)
 		{
-			if (vaca == "1")
+			if (vaca == 1)
 			{
-				return($"Hay {vaca} vaca \n intento numero {intentos}");
+				return($"Hay {vaca} vaca \nintento numero {intentos}");
 			}
-			else if (vaca == "2")
+			else if (vaca == 2)
 			{
-				return ($"Hay {vaca} vaca \n intento numero {intentos}");
+				return ($"Hay {vaca} vaca \nintento numero {intentos}");
 			}
-			else if (vaca == "3")
+			else if (vaca == 3)
 			{
-				return ($"Hay {vaca} vaca \n intento numero {intentos}");
+				return ($"Hay {vaca} vaca \nintento numero {intentos}");
 			}
-			else if (vaca == "4")
+			else if (vaca == 4)
 			{
-				return($"Hay {vaca} vaca \n intento numero {intentos}");
+				return($"Hay {vaca} vaca \nintento numero {intentos}");
 			}
-			else if (toro == "0" && vaca == "0")
+			else if (toro == 0 && vaca == 0)
 			{
-				return($"No hay nada \n intento numero {intentos}");
+				return($"No hay nada \nintento numero {intentos}");
 			}
 			return "";
+		}
+
+		public static int ValidarVaca(List<int> list, List<int> numComp)
+		{
+			// vacas
+			vaca = 0;
+			foreach (int i in list)
+			{
+				foreach(int j in numComp)
+				{
+					if(i == j)
+					{
+						vaca += 1;
+					}
+				}
+			}				
+			return vaca;
 		}
 	}
 }
