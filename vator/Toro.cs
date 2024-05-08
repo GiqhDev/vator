@@ -7,20 +7,20 @@
 		{
 			if (toro == 1)
 			{
-				return($"Hay {toro} toro \n intento numero {intentos}");
+				return($"                                                               Toros: {toro}");
 			}
 			else if (toro == 2)
 			{
-				return($"Hay {toro} toros \n intento numero {intentos}");
+				return ($"                                                              Toros: {toro}");
 			}
 			else if (toro == 3)
 			{
-				return ($"Hay {toro} toros \n intento numero {intentos}");
+				return ($"                                                              Toros:  {toro}");
 			}
-			else if (toro == 4)
-			{
-				return ($"Hay {toro} toros, Felicidades ganaste \nintento numero {intentos}");
-			}
+			//else if (toro == 4)
+			//{
+			//	return ($"Hay {toro} toros, Felicidades ganaste \nintento numero {intentos}");
+			//}
 			return "";
 		}
 
