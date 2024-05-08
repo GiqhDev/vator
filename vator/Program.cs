@@ -41,34 +41,46 @@
 			Console.WriteLine("El numero es de cuatro digitos, no se repite ninguno y no contiene Ceros");
 			Console.WriteLine("Si adivinas un digito en la misma pocicion que el numero de la PC pues es Un TORO, si adivinas un numero pero no en la posicion que el del numero de la PC pues es una VACA.\n");
 
+			Console.ForegroundColor = ConsoleColor.Gray;
 			Console.WriteLine("Tabla de posiciones");
 			bool datos = Usuario.MostrarDatos(out Encabezado, out Sangria, out Datos, out error);
 			if (datos)
 			{
+				
 				Console.WriteLine(Encabezado);
 				Console.WriteLine(Sangria);
-				foreach(var dato  in Datos)
+				foreach (var dato in Datos)
 				{
 					Console.WriteLine(dato);
 				}
-				
+
 				Console.WriteLine(Sangria);
-			}else
+			}
+			else
 			{
 				Console.WriteLine(error);
 			}
+			Console.ResetColor();
 			Console.WriteLine("Comencemos");
 			Console.WriteLine("Nombre:");
 			string userName = Console.ReadLine();
 			while (toro < 4)
 			{
 				if (toro == 4) break;
+
+				if (intentos != 0)
+				{
+					string usernumber = $"{list[0]} {list[1]} {list[2]} {list[3]}";
+					Console.ForegroundColor = ConsoleColor.Green;
+					Console.WriteLine($"Intento: {intentos} --- #: {usernumber} --- Vacas: {vaca} --- Toros: {toro} \n");
+					Console.ResetColor();
+				}
 				toro = 0;
 				vaca = 0;
 				list.Clear();
 				string numUsuario;
 				bool Ok;
-				Console.WriteLine($"                                                   Intento: {intentos}");
+				
 				do
 				{
 					Console.WriteLine("Digite un numero de 4 digitos");
@@ -81,20 +93,23 @@
 				while (!Ok);
 
 				list = Usuario.NumUser(numUsuario);
-
+				// vacas
+				vaca = Vaca.ValidarVaca(list, numComp);
 				//Toros
 				toro = Toro.ValidarToros(list, numComp);
 				if (toro == 4)
 				{
+					Console.ForegroundColor = ConsoleColor.Green;
 					Console.WriteLine($"felicidades ganaste el numero es {list[0]} {list[1]} {list[2]} {list[3]}");
 					du = new DataUser(userName, intentos);
 					bool save = Usuario.GuardarDatos(du);
 					if (save)
 					{
 						Console.WriteLine("Datos guardados");
-						 datos = Usuario.MostrarDatos(out Encabezado, out Sangria, out Datos, out error);
+						datos = Usuario.MostrarDatos(out Encabezado, out Sangria, out Datos, out error);
 						if (datos)
-						{
+						{							
+							Console.ForegroundColor = ConsoleColor.Gray;
 							Console.WriteLine(Encabezado);
 							Console.WriteLine(Sangria);
 							foreach (var dato in Datos)
@@ -114,17 +129,14 @@
 						Console.WriteLine("Error al guardar los datos");
 					}
 				}
-
-				// vacas
-				vaca = Vaca.ValidarVaca(list, numComp);
-
+				Console.ResetColor();
 				intentos++;
 
-				var cantVacas = Vaca.CantVacas(vaca, toro);
-				Console.WriteLine(cantVacas);
+				//var cantVacas = Vaca.CantVacas(vaca, toro);
+				//Console.WriteLine(cantVacas);
 
-				var cantToros = Toro.CantToros(toro, intentos);
-				Console.WriteLine(cantToros);
+				//var cantToros = Toro.CantToros(toro, intentos);
+				//Console.WriteLine(cantToros);
 			}
 		}
 	}

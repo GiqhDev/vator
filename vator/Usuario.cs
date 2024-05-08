@@ -2,7 +2,7 @@
 {
 	internal class Usuario
 	{
-		public static List<int> list = new List<int>();
+		public static List<int> list = new();
 		public static List<int> NumUser(string numUsuario)
 		{
 			for (int i = 0; i < numUsuario.Length; i++)
