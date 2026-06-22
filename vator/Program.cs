@@ -1,15 +1,9 @@
-﻿namespace vator
+namespace vator;
+
+public static class Program
 {
-	public class Program
-	{
-		
-		static void Main(string[] args)
-		{
-			do
-			{
-				Jugar.Presentacion();
-			}while (true);
-			
-		}
-	}
+    public static void Main()
+    {
+        Jugar.Presentacion();
+    }
 }
